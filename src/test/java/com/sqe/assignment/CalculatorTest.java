@@ -66,3 +66,62 @@ class CalculatorTest {
         assertEquals(15, calculator.subtract(10, -5));
     }
 }
+// =================================================================
+    //  Tests by Ali Naqi (multiply and divide)
+    // =================================================================
+
+    @Test
+    @DisplayName("Multiply: Two positive numbers")
+    void testMultiply_whenBothInputsArePositive_shouldReturnCorrectProduct() {
+        assertEquals(20, calculator.multiply(4, 5));
+    }
+
+    @Test
+    @DisplayName("Multiply: A positive and a negative number")
+    void testMultiply_whenOneInputIsNegative_shouldReturnNegativeProduct() {
+        assertEquals(-15, calculator.multiply(3, -5));
+    }
+
+    @Test
+    @DisplayName("Multiply: Two negative numbers")
+    void testMultiply_whenBothInputsAreNegative_shouldReturnPositiveProduct() {
+        assertEquals(25, calculator.multiply(-5, -5));
+    }
+
+    @Test
+    @DisplayName("Multiply: Multiplying by zero")
+    void testMultiply_whenOneInputIsZero_shouldReturnZero() {
+        assertEquals(0, calculator.multiply(100, 0));
+    }
+
+    @Test
+    @DisplayName("Multiply: Multiplying by one (Boundary Test)")
+    void testMultiply_whenMultiplyingByOne_shouldReturnTheNumber() {
+        assertEquals(42, calculator.multiply(42, 1));
+    }
+
+    @Test
+    @DisplayName("Divide: Standard division of two positive numbers")
+    void testDivide_whenStandardDivision_shouldReturnCorrectQuotient() {
+        assertEquals(2.5, calculator.divide(5, 2));
+    }
+
+    @Test
+    @DisplayName("Divide: Dividing zero by a number")
+    void testDivide_whenNumeratorIsZero_shouldReturnZero() {
+        assertEquals(0.0, calculator.divide(0, 10));
+    }
+
+    @Test
+    @DisplayName("Divide: Dividing a number by itself (Boundary Test)")
+    void testDivide_whenDividingByItself_shouldReturnOne() {
+        assertEquals(1.0, calculator.divide(7, 7));
+    }
+
+    @Test
+    @DisplayName("Divide: Division by zero (CRITICAL BOUNDARY TEST)")
+    void testDivide_whenDenominatorIsZero_shouldThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.divide(10, 0);
+        });
+    }
