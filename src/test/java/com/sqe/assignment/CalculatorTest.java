@@ -65,8 +65,7 @@ class CalculatorTest {
     void testSubtract_whenSubtractingNegativeFromPositive_shouldBeLikeAddition() {
         assertEquals(15, calculator.subtract(10, -5));
     }
-}
-// =================================================================
+ // =================================================================
     //  Tests by Ali Naqi (multiply and divide)
     // =================================================================
 
@@ -125,3 +124,5 @@ class CalculatorTest {
             calculator.divide(10, 0);
         });
     }
+
+}
