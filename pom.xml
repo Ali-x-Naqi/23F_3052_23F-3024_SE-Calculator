@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yourinitials.assignment</groupId>
+    <groupId>com.sqe.assignment</groupId>
     <artifactId>junit-calculator</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -15,6 +15,7 @@
     </properties>
 
     <dependencies>
+        <!-- JUnit 5 Jupiter API for writing tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -22,6 +23,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JUnit 5 Jupiter Engine for running tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -29,6 +31,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JUnit 5 Parameterized Tests (for Task 3) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -39,10 +42,21 @@
 
     <build>
         <plugins>
+            <!-- Maven Surefire Plugin to run the tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+                <!-- START: Configuration for Task 4 -->
+                <configuration>
+                    <!-- Enables parallel execution of test methods -->
+                    <parallel>methods</parallel>
+                    <!-- Sets the number of threads to use -->
+                    <threadCount>4</threadCount>
+                    <!-- Example: To run ONLY the 'fast' group, uncomment the line below -->
+                    <!-- <groups>fast</groups> -->
+                </configuration>
+                <!-- END: Configuration for Task 4 -->
             </plugin>
         </plugins>
     </build>
