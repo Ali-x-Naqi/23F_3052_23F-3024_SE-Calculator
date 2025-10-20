@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 class CalculatorTest {
 
@@ -45,6 +47,8 @@ class CalculatorTest {
     @Test
     @DisplayName("Add: Adding to Integer.MAX_VALUE (Boundary Test)")
     void testAdd_whenAddingToMaxInteger_shouldOverflow() {
+        // This test confirms the standard Java behavior where adding 1 to the maximum
+        // integer value wraps around to the minimum integer value.
         assertEquals(Integer.MIN_VALUE, calculator.add(Integer.MAX_VALUE, 1));
     }
 
@@ -65,7 +69,8 @@ class CalculatorTest {
     void testSubtract_whenSubtractingNegativeFromPositive_shouldBeLikeAddition() {
         assertEquals(15, calculator.subtract(10, -5));
     }
- // =================================================================
+    
+    // =================================================================
     //  Tests by Ali Naqi (multiply and divide)
     // =================================================================
 
@@ -125,4 +130,19 @@ class CalculatorTest {
         });
     }
 
+ // =================================================================
+    //  Task 3: Data-Driven Tests (THE CORRECT VERSION)
+    // =================================================================
+
+    @ParameterizedTest(name = "Data-driven add test: {0} + {1} = {2}")
+    @CsvFileSource(resources = "/add_test_data.csv", numLinesToSkip = 1)
+    void testAdd_withDataFromCsv(int a, int b, int expected) {
+        assertEquals(expected, calculator.add(a, b));
+    }
+
+    @ParameterizedTest(name = "Data-driven subtract test: {0} - {1} = {2}")
+    @CsvFileSource(resources = "/subtract_test_data.csv", numLinesToSkip = 1)
+    void testSubtract_withDataFromCsv(int a, int b, int expected) {
+        assertEquals(expected, calculator.subtract(a, b));
+    }
 }
